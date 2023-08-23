@@ -1,5 +1,6 @@
 package com.application.Agence.Service;
 
+import com.application.Agence.Model.Reservation;
 import com.application.Agence.Model.Voyage;
 import com.application.Agence.Repository.VoyageDAO;
 import lombok.Data;
@@ -10,23 +11,45 @@ import java.util.List;
 @Service
 @Data
 
-public class VoyageService {
+public class VoyageService implements InterfaceService {
     private VoyageDAO voyages;
 
     public VoyageService(VoyageDAO voyages) {
         this.voyages = voyages;
     }
 
-    public Voyage findByIdVoyage(int id ){return voyages.FindById(id);}
-    public List<Voyage> FindAllVoyage(){return  voyages.FindAll();}
 
-    public Voyage PostVoyage(Voyage voyage){return  voyages.Register(voyage);}
+    @Override
+    public Voyage FindById(int id) {
+        return voyages.FindById(id);
+    }
 
-    public  Voyage Update(int id ,Voyage entity){return voyages.Update(id , entity);}
+    @Override
+    public List<Voyage> FindAll() {
+        return voyages.FindAll();
+    }
 
-    public  Voyage UpdateVoyageParcial(int id , Voyage entity){return  voyages.UpdatePartial(id , entity);}
+    @Override
+    public Voyage Register(Object entity) {
+        Voyage voyage = (Voyage) entity;
+        return voyages.Register(voyage);
+    }
 
-    public List<Voyage> DeleteVoyage(int id ){return voyages.Delete(id);}
+    @Override
+    public Voyage Update(int id, Object entity) {
+        Voyage voyage = (Voyage) entity;
+        return voyages.Update(id,voyage);
+    }
 
+    @Override
+    public Voyage UpdatePartial(int id, Object entity) {
+        Voyage voyage = (Voyage) entity;
+        return voyages.UpdatePartial(id,voyage);
+    }
+
+    @Override
+    public List<Voyage> Delete(int id) {
+        return voyages.Delete(id);
+    }
 }
 

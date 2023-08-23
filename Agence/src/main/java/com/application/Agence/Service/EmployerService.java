@@ -10,22 +10,42 @@ import java.util.List;
 @Data
 
 @Service
-public class EmployerService {
+public class EmployerService implements InterfaceService{
     private EmployerDAO employer ;
-    public EmployerService(EmployerDAO employer) {this.employer = employer;}
-
-    public Employer FindEmployerById(int id ){return employer.FindById(id);}
-
-    public List<Employer> FindAllEmployer(){return employer.FindAll();}
-
-    public Employer RegiterEmployer(Employer employers){return employer.Register(employers);}
-
-    public Employer UpdateEmployer(int id ,Employer employers){return  employer.Update(id,employers);}
-
-    public Employer UpdateEmployerParcial(int id , Employer employers ){
-        return  employer.UpdatePartial(id,employers);
+    public EmployerService(EmployerDAO employer) {
+        this.employer = employer;
     }
 
-    public List<Employer> DeleteEmployer(int id ){return  employer.Delete(id);}
+    @Override
+    public Employer FindById(int id) {
+        return employer.FindById(id);
+    }
 
+    @Override
+    public List<Employer> FindAll() {
+        return employer.FindAll();
+    }
+
+    @Override
+    public Employer Register(Object entity) {
+        Employer employers = (Employer) entity;
+        return employer.Register(employers) ;
+    }
+
+    @Override
+    public Employer Update(int id, Object entity) {
+        Employer employers = (Employer) entity;
+        return employer.Update(id,employers);
+    }
+
+    @Override
+    public Employer UpdatePartial(int id, Object entity) {
+        Employer employers = (Employer) entity;
+        return employer.UpdatePartial(id,employers);
+    }
+
+    @Override
+    public List<Employer> Delete(int id) {
+        return employer.Delete(id);
+    }
 }

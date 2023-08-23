@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Data
 @Service
-public class ClientService {
+public class ClientService  implements InterfaceService{
 
     private ClientsDAO clients;
 
@@ -15,21 +15,36 @@ public class ClientService {
         this.clients = clients;
     }
 
-    public Client FindByIdClient(int id){return clients.FindById(id);}
+    @Override
+    public Client FindById(int id) {
+        return clients.FindById(id);
+    }
 
-    public List<Client> FindAllClient(){
-       return clients.FindAll();
+    @Override
+    public List<Client> FindAll() {
+        return clients.FindAll();
     }
-    public Client AddClient(Client entity){
-        return clients.Register(entity);
+
+    @Override
+    public Client Register(Object entity) {
+        Client client = (Client) entity ;
+        return clients.Register(client);
     }
-    public Client UpdateClient(int id,Client client){
-        return clients.Update(id ,client);
+
+    @Override
+    public Client Update(int id, Object entity) {
+        Client client = (Client) entity ;
+        return clients.Update(id,client);
     }
-    public Client UpdateColumnClient(int id , Client client){
-        return clients.UpdatePartial(id , client);
+
+    @Override
+    public Client UpdatePartial(int id, Object entity) {
+        Client client = (Client) entity ;
+        return clients.UpdatePartial(id, client);
     }
-    public  List<Client> DeleteClient(int id ){
+
+    @Override
+    public List<Client> Delete(int id) {
         return clients.Delete(id);
     }
 }
