@@ -55,7 +55,7 @@ The application exposes CRUD endpoints for each entity:
 
 ## Installation and Execution
 
-1. Clone this repository: `git clone https://github.com/your-username/your-repo.git`
+1. Clone this repository: `git clone https://github.com/ZoFitahiana/GestionAgenceVoyage`
 2. Open the project in your IDE (e.g., Eclipse, IntelliJ IDEA).
 3. Configure Spring Boot dependencies.
 4. Start the application by running the main class.
