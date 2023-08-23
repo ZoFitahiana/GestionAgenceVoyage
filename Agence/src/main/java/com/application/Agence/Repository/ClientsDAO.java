@@ -67,10 +67,7 @@ public class ClientsDAO implements ModelDAOFactory {
 
     @Override
     public Client Register(Object entity) {
-        if (!(entity instanceof Client client)) {
-            throw new IllegalArgumentException("Entity must be of type Client");
-        }
-
+        Client client = (Client) entity ;
         ConnectionDb.AcquireConnection();
         try {
             String sql = "INSERT INTO client (id_client, nom, prenom, adresse, telephone, email) VALUES (?, ?, ?, ?, ?, ?)";
@@ -92,9 +89,7 @@ public class ClientsDAO implements ModelDAOFactory {
 
     @Override
     public Client Update(int id, Object entity) {
-        if (!(entity instanceof Client client)) {
-            throw new IllegalArgumentException("Entity must be of type Client");
-        }
+        Client client = (Client) entity ;
         ConnectionDb.AcquireConnection();
         try {
             String sql = "UPDATE client SET nom = ?, prenom = ?, adresse = ?, telephone = ?, email = ? WHERE id_client = ?";
@@ -116,10 +111,7 @@ public class ClientsDAO implements ModelDAOFactory {
 
     @Override
     public Client UpdatePartial(int id, Object entity) {
-        if (!(entity instanceof Client updatedClient)) {
-            throw new IllegalArgumentException("Entity must be of type Client");
-        }
-
+        Client client = (Client) entity ;
         ConnectionDb.AcquireConnection();
         try {
             StringBuilder sql = new StringBuilder("UPDATE client SET ");
@@ -127,29 +119,29 @@ public class ClientsDAO implements ModelDAOFactory {
             List<Object> columnValues = new ArrayList<>();
             int parameterIndex = 1;
 
-            if (updatedClient.getNom() != null) {
+            if ( client.getNom()!= null) {
                 updateColumns.add("nom = ?");
-                columnValues.add(updatedClient.getNom());
+                columnValues.add(client.getNom());
             }
 
-            if (updatedClient.getPrenom() != null) {
+            if (client.getPrenom() != null) {
                 updateColumns.add("prenom = ?");
-                columnValues.add(updatedClient.getPrenom());
+                columnValues.add(client.getPrenom());
             }
 
-            if (updatedClient.getAdresse() != null) {
+            if (client.getAdresse() != null) {
                 updateColumns.add("adresse = ?");
-                columnValues.add(updatedClient.getAdresse());
+                columnValues.add(client.getAdresse());
             }
 
-            if (updatedClient.getTelephone() != null) {
+            if (client.getTelephone() != null) {
                 updateColumns.add("telephone = ?");
-                columnValues.add(updatedClient.getTelephone());
+                columnValues.add(client.getTelephone());
             }
 
-            if (updatedClient.getEmail() != null) {
+            if (client.getEmail() != null) {
                 updateColumns.add("email = ?");
-                columnValues.add(updatedClient.getEmail());
+                columnValues.add(client.getEmail());
             }
 
             if (updateColumns.isEmpty()) {

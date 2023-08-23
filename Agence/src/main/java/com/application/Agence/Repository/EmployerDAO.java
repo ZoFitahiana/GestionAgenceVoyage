@@ -71,9 +71,7 @@ public class EmployerDAO implements ModelDAOFactory {
 
     @Override
     public Employer Register(Object entity) {
-        if (!(entity instanceof Employer employer)) {
-            throw new IllegalArgumentException("Entity must be of type Client");
-        }
+        Employer employer = (Employer) entity;
         ConnectionDb.AcquireConnection();
         try{
             String sql = "insert into employer (id_employer,nom,prenom,poste,adresse,telephone,date_embauche) values(?,?,?,?,?,?,?)";
@@ -96,9 +94,7 @@ public class EmployerDAO implements ModelDAOFactory {
 
     @Override
     public Employer Update(int id, Object entity) {
-        if (!(entity instanceof Employer employer)) {
-            throw new IllegalArgumentException("Entity must be of type Client");
-        }
+        Employer employer = (Employer) entity;
         ConnectionDb.AcquireConnection();
         try{
             String sql = "update employer set nom = ? , prenom = ? ,poste = ? ,adresse = ?,telephone = ?,date_embauche = ? where id_employer = ?";
@@ -121,9 +117,7 @@ public class EmployerDAO implements ModelDAOFactory {
 
     @Override
     public Employer UpdatePartial(int id, Object entity) {
-        if (!(entity instanceof Employer employer)) {
-            throw new IllegalArgumentException("Entity must be of type Client");
-        }
+        Employer employer = (Employer) entity;
         ConnectionDb.AcquireConnection();
         try{
             StringBuilder sql = new StringBuilder("UPDATE employer SET ");

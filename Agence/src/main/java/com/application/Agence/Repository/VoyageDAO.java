@@ -73,10 +73,7 @@ public class VoyageDAO implements ModelDAOFactory{
 
     @Override
     public Voyage Register(Object entity) {
-        if (!(entity instanceof Voyage voyages)) {
-            throw new IllegalArgumentException("Entity must be of type voyage");
-        }
-
+        Voyage voyages = (Voyage) entity;
         ConnectionDb.AcquireConnection();
         try{
             String sql = "insert into voyage (id_voyage,destination,date_depart,duree,description,prix,places_disponibles) values (?,?,?,?,?,?,?)";
@@ -97,9 +94,7 @@ public class VoyageDAO implements ModelDAOFactory{
 
     @Override
     public Voyage Update(int id, Object entity) {
-        if (!(entity instanceof Voyage voyages)) {
-            throw new IllegalArgumentException("Entity must be of type Voyage");
-        }
+        Voyage voyages = (Voyage) entity;
         ConnectionDb.AcquireConnection();
 
         try{
@@ -122,10 +117,8 @@ public class VoyageDAO implements ModelDAOFactory{
 
     @Override
     public Voyage UpdatePartial(int id, Object entity) {
-        if (!(entity instanceof Voyage voyages)) {
-            throw new IllegalArgumentException("Entity must be of type Voyage");
-        }
-        ConnectionDb.AcquireConnection();
+       Voyage voyages = (Voyage) entity; 
+       ConnectionDb.AcquireConnection();
          try{
              StringBuilder sql = new StringBuilder("UPDATE voyage SET ");
              List<String> updateColumns = new ArrayList<>();
