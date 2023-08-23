@@ -15,32 +15,32 @@ public class ClientController {
 
     @GetMapping("/client/{id}")
     public Client ShowClientById(@PathVariable int id){
-       return clients.FindByIdClient(id);
+        return clients.FindById(id);
     }
 
     @GetMapping("/client")
     public List<Client> showAllClient(){
-      return    clients.FindAllClient();
+        return clients.FindAll();
     }
 
-    @PostMapping("/PostClient")
+    @PostMapping("/post-client")
     public  Client RegisterClient( @RequestBody Client entity){
-        return clients.AddClient(entity);
+        return clients.Register(entity);
     }
 
-    @PutMapping("/UpdateClient/{id}")
+    @PutMapping("/update-client/{id}")
     public Client udpdateClient(@PathVariable int id , @RequestBody  Client client){
-        return clients.UpdateClient(id,client);
+        return clients.Update(id,client);
     }
 
-    @PatchMapping("/updateClientPartial/{id}")
+    @PatchMapping("/update-partial-client/{id}")
     public Client updateClientPartial(@PathVariable int id , @RequestBody Client client){
-        return  clients.UpdateColumnClient(id,client);
+        return  clients.UpdatePartial(id,client);
     }
 
-    @DeleteMapping("/DeleteClient/{id}")
+    @DeleteMapping("/delete-client/{id}")
     public List<Client> DeleteClient(@PathVariable int id){
-        return clients.DeleteClient(id);
+        return clients.Delete(id);
     }
 
 }

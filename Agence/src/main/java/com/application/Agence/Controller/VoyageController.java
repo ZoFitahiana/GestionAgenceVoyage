@@ -13,23 +13,33 @@ public class VoyageController {
     public VoyageController(VoyageService voyages) {this.voyages = voyages;}
 
     @GetMapping("/voyage/{id}")
-    public Voyage showVoyageById(@PathVariable int id ){return voyages.findByIdVoyage(id);}
-
-    @GetMapping("/voyage")
-    public List<Voyage> showAllVoyage(){return  voyages.FindAllVoyage();}
-
-    @PostMapping("/PostVoyage")
-    public Voyage PostVoyage(@RequestBody Voyage Newvoyage){return voyages.PostVoyage(Newvoyage);}
-    @PutMapping("/UpdateVoyage/{id}")
-    public Voyage UpdateVoyage(@PathVariable  int id , @RequestBody Voyage voyage){return voyages.Update(id,voyage);}
-
-    @PatchMapping("/UpdateVoyageParcial/{id}")
-    public  Voyage UpdateVoyages(@PathVariable int id ,@RequestBody Voyage voyage){
-        return voyages.UpdateVoyageParcial(id,voyage);
+    public Voyage showVoyageById(@PathVariable int id ){
+        return voyages.FindById(id);
     }
 
-    @DeleteMapping("/DeleteVoyage/{id}")
-    public List<Voyage> DeleteVoyage(@PathVariable int id ){return voyages.DeleteVoyage(id);}
+    @GetMapping("/voyage")
+    public List<Voyage> showAllVoyage(){
+        return  voyages.FindAll();
+    }
+
+    @PostMapping("/post-voyage")
+    public Voyage PostVoyage(@RequestBody Voyage Newvoyage){
+        return voyages.Register(Newvoyage);
+    }
+    @PutMapping("/update-voyage/{id}")
+    public Voyage UpdateVoyage(@PathVariable  int id , @RequestBody Voyage voyage){
+        return voyages.Update(id,voyage);
+    }
+
+    @PatchMapping("/update-partial-voyage/{id}")
+    public  Voyage UpdateVoyages(@PathVariable int id ,@RequestBody Voyage voyage){
+        return voyages.UpdatePartial(id,voyage);
+    }
+
+    @DeleteMapping("/delete-voyage/{id}")
+    public List<Voyage> DeleteVoyage(@PathVariable int id ){
+        return voyages.Delete(id);
+    }
 
 
 }
