@@ -1,6 +1,6 @@
 CREATE DATABASE voyage ;
 
-\c voyages
+\c voyage
 
 CREATE TABLE client (
     id_client INT PRIMARY KEY,
@@ -37,14 +37,14 @@ CREATE TABLE reservation (
     id_voyage INT,
     id_employer INT,
     date_reservation DATE,
-    statut_reservation VARCHAR(50), -- Statut de la réservation (en attente, confirmée, annulée, etc.)
+    statut_reservation VARCHAR(50),
     nombre_participants INT,
     FOREIGN KEY (id_client) REFERENCES client(id_client),
     FOREIGN KEY (id_voyage) REFERENCES voyage(id_voyage),
     FOREIGN KEY (id_employer) REFERENCES employer(id_employer)
 );
 
-CREATE TABLE alter payement (
+CREATE TABLE  payment (
     id_payment INT PRIMARY KEY,
     id_reservation INT,
     montant DECIMAL(10, 2),
