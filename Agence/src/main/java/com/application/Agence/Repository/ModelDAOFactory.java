@@ -3,7 +3,7 @@ package com.application.Agence.Repository;
 import java.util.List;
 
 public interface ModelDAOFactory<T>{
-    public T FindById(int id_client);
+    public T FindById(int id);
     public List<T> FindAll();
     public T Register(T entity);
     public T Update(int id, T entity);
